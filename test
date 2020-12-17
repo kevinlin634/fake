@@ -1,0 +1,1093 @@
+{
+	"info": {
+		"_postman_id": "46d6c6ed-b3f6-49ab-a294-6090d4a686c8",
+		"name": "Face-GMB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. 取得AES KEY (aeskey)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e39422a1-d29a-4437-a7fa-f493549df60e",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c0846238-77c0-4c84-8f03-6c5bcb457d13",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"channelCode\": \"EBT-OT-EMB-01\",\n    \"apiversion\":\"2\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/aeskey",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"aeskey"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. 用戶驗證 (verify)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f56603b0-6254-4cd9-896f-1959a56c22c1",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3a358567-c346-46b8-a41f-ca184e7bfab8",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "txid",
+							"value": "{{$guid}}",
+							"type": "text"
+						},
+						{
+							"key": "seqNo",
+							"value": "-1",
+							"type": "text"
+						},
+						{
+							"key": "custID",
+							"value": "26589898",
+							"type": "text"
+						},
+						{
+							"key": "cellPhone",
+							"value": "0910123456",
+							"type": "text"
+						},
+						{
+							"key": "channelCode",
+							"value": "EBT-OT-EMB-01",
+							"type": "text"
+						},
+						{
+							"key": "verifyType",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "verifySource",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "fileFormat",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "tdata",
+							"value": "t",
+							"type": "text"
+						},
+						{
+							"key": "device",
+							"value": "iPhone X",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "os",
+							"value": "iOS 12.0.1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "appVersion",
+							"value": "7",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "uploadFile",
+							"type": "file",
+							"src": "/D:/Users/NT86637/Documents/人臉辨識/照片/下載JPG.jpg"
+						},
+						{
+							"key": "deviceid",
+							"value": "111",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/verify",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. 用戶註冊 (register)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9ce47689-682c-4acb-954c-9ea1584c02ac",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7dd11ffc-0e93-4093-ba27-1b6a1462139f",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "txid",
+							"value": "{{$guid}}",
+							"type": "text"
+						},
+						{
+							"key": "seqNo",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "custID",
+							"value": "QAldWCO3HDhvTwNEnmKkug==",
+							"type": "text"
+						},
+						{
+							"key": "cellPhone",
+							"value": "mUVGm8w6eehjnkTZMSgUbg==",
+							"type": "text"
+						},
+						{
+							"key": "channelCode",
+							"value": "EBT-OT-EMB-01",
+							"type": "text"
+						},
+						{
+							"key": "registerSource",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "fileFormat",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "uploadFile",
+							"type": "file",
+							"src": "/D:/Users/NT86637/Documents/人臉辨識/照片/下載JPG.jpg"
+						},
+						{
+							"key": "device",
+							"value": "Mobile",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "os",
+							"value": "Android",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "appVersion",
+							"value": "6.3",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/register",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.取得用戶在系統的資訊",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "911eb1dd-6e67-4b56-a8f7-0d5463ca3ac2",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8bf594f-c208-4a78-bad8-500e019f0116",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"txid\":\"{{$guid}}\",\n    \"seqNo\": -1,\n    \"custID\": \"26589898\",\n    \"cellPhone\": \"0910123456\",\n    \"channelCode\": \"ALL\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/accountinfo",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"accountinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. 查詢註冊狀態 (registerinfo)_透過txid查詢",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f924f02-6a10-41e8-9350-f6c4364a2a17",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"txid\":\"750140b5-f777-415b-8c73-4e1f3dff8a98\",\n    \"seqNo\": -1,\n    \"custID\": \"26589898\",\n    \"cellPhone\": \"0910123456\",\n    \"startDateTime\": \"20201101000000\",\n    \"endDateTime\": \"20301231235959\",\n    \"channelCode\": \"20301231235959\",\n    \"status\": \"\",\n    \"device\": \"iPhone\",\n    \"os\": \"iOS 12\",\n    \"appVersion\": \"7\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/registerinfo",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"registerinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. 查詢驗證資料 (verifyInfo)_使用txid查詢",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d3b4539e-586d-4df6-bcf5-e44d1607c6cc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "75440bc6-cd67-49df-9973-4b920295c507",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"txid\":\"38acde19-75fb-4120-818b-f8c3593d3f2b\",\n    \"seqNo1\": -1,\n    \"custID1\": \"26589898\",\n    \"channelCode1\": \"EBT-OT-EMB-01\",\n    \"device\": \"252ed0bd-0fca-474a-b131-4d2ee5e44b95\",\n    \"os\": \"10\",\n    \"app_version\": \"4.3.6\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/verifyinfo",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"verifyinfo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "6. 照片品質檢測(photodetect)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "txid",
+									"value": "{{current_timestamp}}",
+									"type": "text"
+								},
+								{
+									"key": "custID",
+									"value": "A123456789",
+									"type": "text"
+								},
+								{
+									"key": "channelCode",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file"
+								},
+								{
+									"key": "device",
+									"value": "Mobile",
+									"type": "text"
+								},
+								{
+									"key": "os",
+									"value": "IOS",
+									"type": "text"
+								},
+								{
+									"key": "app_version",
+									"value": "12",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ServerUrl}}/FaceidWeb/photodetect",
+							"protocol": "http",
+							"host": [
+								"{{ServerUrl}}"
+							],
+							"path": [
+								"FaceidWeb",
+								"photodetect"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 Mar 2019 02:40:35 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"txid\": \"201903061003639\",\n    \"statusCode\": \"0000\",\n    \"statusMsg\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "7. 照片品質檢測 (photodetect)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2dc41f5f-036f-411f-b6bc-62277ff025c0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4268522-5d09-4d06-aeac-d5c6606b2725",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "txid",
+							"value": "{{$guid}}",
+							"type": "text"
+						},
+						{
+							"key": "seqNo",
+							"value": "-1",
+							"type": "text"
+						},
+						{
+							"key": "custID",
+							"value": "26589898",
+							"type": "text"
+						},
+						{
+							"key": "cellPhone",
+							"value": "0910123456",
+							"type": "text"
+						},
+						{
+							"key": "channelCode",
+							"value": "EBT-NT-B2C-05",
+							"type": "text"
+						},
+						{
+							"key": "fileFormat",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "uploadFile",
+							"type": "file",
+							"src": "/D:/Users/NT86637/Pictures/下載.png"
+						},
+						{
+							"key": "device",
+							"value": "iPhone X",
+							"type": "text"
+						},
+						{
+							"key": "os",
+							"value": "12.1",
+							"type": "text"
+						},
+						{
+							"key": "appVersion",
+							"value": "1.0.1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/photodetect",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"photodetect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. 取得用戶註冊照片(getregisterphoto)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "62cb1c38-e44b-45d6-a12f-edeeae5a4643",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec0d8399-0e14-4cf4-a9f8-e4b7ecbeae90",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"txid\": \"{{$guid}}\",\n    \"seqNo\": -1,\n    \"custID\": \"26589898\",\n    \"cellPhone\": \"0910123456\",\n    \"channelCode\": \"EBT-OT-EMB-01\",\n    \"device\": \"Mobile\",\n    \"os\": \"IOS\",\n    \"app_version\": \"12\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/getregisterphoto",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"getregisterphoto"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "6. 照片品質檢測(photodetect)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "txid",
+									"value": "{{current_timestamp}}",
+									"type": "text"
+								},
+								{
+									"key": "custID",
+									"value": "A123456789",
+									"type": "text"
+								},
+								{
+									"key": "channelCode",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file"
+								},
+								{
+									"key": "device",
+									"value": "Mobile",
+									"type": "text"
+								},
+								{
+									"key": "os",
+									"value": "IOS",
+									"type": "text"
+								},
+								{
+									"key": "app_version",
+									"value": "12",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ServerUrl}}/FaceidWeb/photodetect",
+							"protocol": "http",
+							"host": [
+								"{{ServerUrl}}"
+							],
+							"path": [
+								"FaceidWeb",
+								"photodetect"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 Mar 2019 02:40:35 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"txid\": \"201903061003639\",\n    \"statusCode\": \"0000\",\n    \"statusMsg\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "9. 解鎖 (unlock)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5cb0c9cf-66dd-48d9-bd26-e4b419675576",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9b1c40d-bfbf-4b17-b502-b8afc964e068",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"txid\": \"{{$guid}}\",\n    \"seqNo\": -1,\n    \"custID\": \"26589898\",\n    \"cellPhone\": \"0910123456\",\n    \"unlockTarget\": \"1\",\n    \"channelCode\": \"EBT-OT-EMB-01\",\n    \"applier\": \"99999\",\n    \"reviewer\": \"99999\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/unlock",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"unlock"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "9. 解鎖 (unlock)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"txid\": \"{{$guid}}\",\n    \"seqNo\": -1,\n    \"custID\": \"A123456789\",\n    \"unlockTarget\": \"1\",\n    \"channelCode\": \"MID-NT-STK-01\",\n    \"applier\": \"81734\",\n    \"reviewer\": \"81734\",\n    \"device\": \"iPhone X\",\n    \"os\": \"iOS 12\",\n    \"appVersion\": \"3\"\n}"
+						},
+						"url": {
+							"raw": "{{ServerUrl}}/cfau/unlock",
+							"host": [
+								"{{ServerUrl}}"
+							],
+							"path": [
+								"cfau",
+								"unlock"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 28 Apr 2019 05:44:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=95"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"txid\": \"4dc1e442-7ed9-438b-8992-e6d122c39c2c\",\n    \"statusCode\": \"0000\",\n    \"statusMsg\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "10. 註銷(unregister)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f203e9af-abd6-4e99-8fe1-7f674e84dcda",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4cf2dbb-3ee9-4873-9963-7a92113cb3db",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"txid\": \"{{$guid}}\",\n    \"seqNo\": -1,\n    \"custID\": \"26589898\",\n    \"cellPhone\": \"0910123456\",\n    \"channelCode\": \"EBT-OT-EMB-01\",\n    \"reason\": \"1\",\n    \"applier\":\"81734\",\n    \"reviewer\":\"81734\",\n    \"device\": \"\",\n    \"os\": \"\",\n    \"appVersion\": \"\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/unregister",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"unregister"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11.裝置綁定",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1b3ff1ca-7998-4af0-92b8-5d6fcf54056d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e23cbd4f-418c-4a3f-95f2-d40b73820e7c",
+						"exec": [
+							"pm.test(\"Http Status is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status Codes is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusCode).to.equal(\"0000\");",
+							"});",
+							"pm.test(\"Status Msg is Correct\", function () {",
+							"    pm.expect(pm.response.json().statusMsg).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"txid\": \"{{$guid}}\",\n    \"seqNo\": \"-1\",\n    \"custID\": \"26589898\",\n    \"cellPhone\": \"0910123456\",\n    \"channelCode\": \"EBT-OT-EMB-01\",\n    \"deviceid\": \"{{current_timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "{{ServerUrl}}/gmb/patchdeviceid",
+					"host": [
+						"{{ServerUrl}}"
+					],
+					"path": [
+						"gmb",
+						"patchdeviceid"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "9. 解鎖 (unlock)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"txid\": \"{{$guid}}\",\n    \"seqNo\": -1,\n    \"custID\": \"A123456789\",\n    \"unlockTarget\": \"1\",\n    \"channelCode\": \"MID-NT-STK-01\",\n    \"applier\": \"81734\",\n    \"reviewer\": \"81734\",\n    \"device\": \"iPhone X\",\n    \"os\": \"iOS 12\",\n    \"appVersion\": \"3\"\n}"
+						},
+						"url": {
+							"raw": "{{ServerUrl}}/cfau/unlock",
+							"host": [
+								"{{ServerUrl}}"
+							],
+							"path": [
+								"cfau",
+								"unlock"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 28 Apr 2019 05:44:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=95"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"txid\": \"4dc1e442-7ed9-438b-8992-e6d122c39c2c\",\n    \"statusCode\": \"0000\",\n    \"statusMsg\": \"\"\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
